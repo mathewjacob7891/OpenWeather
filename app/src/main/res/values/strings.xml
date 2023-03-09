@@ -9,4 +9,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="OPEN_WEATHER_MAP_API_KEY">e4696a4ad79a2d7ee0fc43cff8144a68</string>
 </resources>
