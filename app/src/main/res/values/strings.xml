@@ -2,8 +2,6 @@
     <string name="app_name">OpenWeather</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -13,4 +11,18 @@
 
     <string name="OPEN_WEATHER_MAP_API_KEY">e4696a4ad79a2d7ee0fc43cff8144a68</string>
     <string name="add_city">Add City</string>
+
+    <string name="desc_sunrise">icon of sunrise</string>
+    <string name="desc_sunset">icon of sunset</string>
+    <string name="label_real_feel">Real Feel</string>
+    <string name="label_humidity">Humidity</string>
+    <string name="label_cloudiness">Cloudiness</string>
+    <string name="label_pressure">Pressure</string>
+    <string name="label_wind_speed">Wind speed</string>
+    <string name="label_visibility">Visibility</string>
+    <string name="degree_celsius_symbol">°C</string>
+
+    <string name="degree_celsius_symbol_with_temp">32.9°C</string>
+    <string name="degree_celsius_symbol_with_temp2">32°C</string>
+    <string name="degree_celsius_symbol_with_temp3">Evening\n32°C</string>
 </resources>

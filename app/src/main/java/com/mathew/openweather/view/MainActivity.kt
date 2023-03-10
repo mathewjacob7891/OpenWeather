@@ -1,13 +1,12 @@
 package com.mathew.openweather.view
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import android.view.Menu
-import android.view.MenuItem
 import com.mathew.openweather.R
 import com.mathew.openweather.databinding.ActivityMainBinding
 
@@ -24,13 +23,14 @@ class MainActivity : AppCompatActivity() {
 
 //        setSupportActionBar(binding.toolbar)
 
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            navController.navigate(R.id.action_Navigate_To_AddCityFragment)
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
         }
     }
 

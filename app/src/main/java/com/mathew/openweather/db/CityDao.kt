@@ -7,7 +7,7 @@ import com.mathew.openweather.model.City
 interface CityDao {
 
     @get:Query("SELECT * FROM city")
-    val all: List<City?>?
+    val all: List<City>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(city: City?)

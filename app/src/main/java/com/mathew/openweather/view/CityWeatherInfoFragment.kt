@@ -18,7 +18,7 @@ import com.openweather.content.model.currentweather.CurrentWeather
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class CityWeatherInfoFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
 
@@ -40,14 +40,14 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.action_FirstFragment_to_AddCityFragment)
         }
 
         val helper = OpenWeatherMapHelper(resources.getString(R.string.OPEN_WEATHER_MAP_API_KEY))
         helper.setUnits(Units.IMPERIAL)
         helper.setLanguage(Languages.ENGLISH)
 
-        helper.getCurrentWeatherByCityName("Naples", object : CurrentWeatherCallback {
+        helper.getCurrentWeatherByCityName(arguments?.getString("CityName"), object : CurrentWeatherCallback {
             override fun onSuccess(currentWeather: CurrentWeather?) {
                 binding.textviewFirst.text = """
      Coordinates: ${currentWeather?.coord?.lat}, ${currentWeather?.coord?.lon}
