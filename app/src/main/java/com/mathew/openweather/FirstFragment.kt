@@ -1,6 +1,7 @@
 package com.mathew.openweather
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,7 @@ class FirstFragment : Fragment() {
             }
 
             override fun onFailure(throwable: Throwable?) {
-//                Log.v(TAG, throwable.message)
+                Log.v("TAG", throwable!!.message!!)
             }
         })
     }
