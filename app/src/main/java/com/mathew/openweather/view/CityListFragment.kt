@@ -40,15 +40,28 @@ class CityListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = CityListAdapter()
-        binding.recyclerViewCityList.adapter = adapter
+        initRecyclerView()
+        initObservers()
+    }
+
+    private fun initObservers() {
         cityListViewModel.allCities.observe(viewLifecycleOwner) { cityList ->
             cityList?.let {
                 if (it.isNotEmpty()) {
                     adapter?.setData(it)
+                    binding.textViewError.visibility = View.GONE
+                } else {
+                    binding.textViewError.visibility = View.VISIBLE
                 }
+            } ?: run {
+                binding.textViewError.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun initRecyclerView() {
+        adapter = CityListAdapter()
+        binding.recyclerViewCityList.adapter = adapter
         adapter?.setOnItemClickListener {
             findNavController().navigate(
                 R.id.action_Navigate_To_CityWeatherInfo,

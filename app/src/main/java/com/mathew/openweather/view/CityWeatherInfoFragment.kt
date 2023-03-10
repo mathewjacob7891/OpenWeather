@@ -1,18 +1,17 @@
 package com.mathew.openweather.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mathew.openweather.R
 import com.mathew.openweather.databinding.LayoutCurrentWeatherMainBinding
 import com.mathew.openweather.util.unixTimestampToTimeString
-import com.openweather.content.constant.Languages
-import com.openweather.content.constant.Units
-import com.openweather.content.implementation.OpenWeatherMapHelper
-import com.openweather.content.implementation.callback.CurrentWeatherCallback
+import com.mathew.openweather.viewmodel.CityWeatherInfoViewModel
+import com.mathew.openweather.viewmodel.CityWeatherInfoViewModelFactory
 import com.openweather.content.model.currentweather.CurrentWeather
 
 /**
@@ -25,6 +24,9 @@ class CityWeatherInfoFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private val cityWeatherInfoViewModel: CityWeatherInfoViewModel by viewModels {
+        CityWeatherInfoViewModelFactory(this.requireActivity().application)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,27 +41,20 @@ class CityWeatherInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_AddCityFragment)
-//        }
-
-        val helper = OpenWeatherMapHelper(resources.getString(R.string.OPEN_WEATHER_MAP_API_KEY))
-        helper.setUnits(Units.IMPERIAL)
-        helper.setLanguage(Languages.ENGLISH)
-
-        helper.getCurrentWeatherByCityName(
-            arguments?.getString("CityName"),
-            object : CurrentWeatherCallback {
-                override fun onSuccess(currentWeather: CurrentWeather?) {
-                    setUpUI(currentWeather)
+        arguments?.getString("CityName")?.let {
+            cityWeatherInfoViewModel.fetchWeatherInfoFromCityName(it)
+        } ?: run {
+            findNavController().popBackStack()
+        }
+        cityWeatherInfoViewModel.getCurrentWeatherLiveData()
+            .observe(viewLifecycleOwner) { currentWeather ->
+                currentWeather?.let {
+                    setUpUI(it)
                 }
-
-                override fun onFailure(throwable: Throwable?) {
-                    Log.v("TAG", throwable!!.message!!)
-                }
-            })
+            }
     }
 
+    // TODO: Need to bind this using data binding.
     private fun setUpUI(data: CurrentWeather?) {
         binding.tvTemp.text = data?.main?.temp.toString()
         binding.tvCityName.text = data?.name
