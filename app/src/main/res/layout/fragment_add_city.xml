@@ -1,44 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/city_background"
-    android:padding="20dp"
-    tools:context=".AddCityFragment">
 
-    <EditText
-        android:id="@+id/editTextEnterCityName"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mathew.openweather.viewmodel.AddCityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@color/white"
-        android:gravity="center_vertical|center_horizontal"
-        android:hint="@string/default_query"
-        android:imeOptions="actionGo"
-        android:inputType="textAutoCorrect"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="name" />
+        android:layout_height="match_parent"
+        android:background="@drawable/city_background"
+        android:padding="20dp"
+        tools:context=".view.AddCityFragment">
 
-    <Button
-        android:id="@+id/buttonAddCity"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/editTextEnterCityName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#3498db"
-        android:text="@string/add_city"
-        android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextEnterCityName" />
+        <EditText
+            android:id="@+id/editTextEnterCityName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:autofillHints="name"
+            android:background="@color/white"
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="@string/default_query"
+            android:imeOptions="actionGo"
+            android:inputType="textAutoCorrect"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:text="@={viewModel.cityName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/buttonAddCity"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/editTextEnterCityName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#3498db"
+            android:text="@string/add_city"
+            android:textColor="#fff"
+            android:onClick="@{v -> viewModel.saveCity()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextEnterCityName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

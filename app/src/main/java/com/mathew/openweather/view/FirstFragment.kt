@@ -1,4 +1,4 @@
-package com.mathew.openweather
+package com.mathew.openweather.view
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.mathew.openweather.R
 import com.mathew.openweather.databinding.FragmentFirstBinding
 import com.openweather.content.constant.Languages
 import com.openweather.content.constant.Units

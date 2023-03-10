@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.mathew.openweather.FirstFragment"
+        android:name="com.mathew.openweather.view.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.mathew.openweather.AddCityFragment"
+        android:name="com.mathew.openweather.view.AddCityFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_add_city">
 

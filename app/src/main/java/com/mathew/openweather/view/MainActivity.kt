@@ -1,4 +1,4 @@
-package com.mathew.openweather
+package com.mathew.openweather.view
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import android.view.Menu
 import android.view.MenuItem
+import com.mathew.openweather.R
 import com.mathew.openweather.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
