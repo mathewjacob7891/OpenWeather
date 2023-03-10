@@ -15,10 +15,9 @@ class CityListViewModel(application: Application) : ViewModel() {
 
     init {
         repository = CityRepository(application)
-        findAllCities()
     }
 
-    private fun findAllCities() {
+    fun findAllCities() {
         viewModelScope.launch(Dispatchers.IO) {
             _allCities.postValue(repository.findAllCities())
         }
