@@ -13,4 +13,5 @@
     <color name="sky_blue">#76B0DC</color>
     <color name="color_grey">#CCCCCC</color>
     <color name="dynamic_blue">#219BCC</color>
+    <color name="card_bg">#454749</color>
 </resources>
