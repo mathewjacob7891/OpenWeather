@@ -1,6 +1,7 @@
 package com.openweather.content.model.common
 
 import com.google.gson.annotations.SerializedName
+import com.openweather.content.util.unixTimestampToTimeString
 
 class Sys {
     @SerializedName("type")
@@ -23,4 +24,7 @@ class Sys {
 
     @SerializedName("pod")
     val pod: Char? = null
+
+    fun getSunriseString(): String? = sunrise?.unixTimestampToTimeString()
+    fun getSunsetString(): String? = sunset?.unixTimestampToTimeString()
 }

@@ -1,4 +1,4 @@
-package com.mathew.openweather.util
+package com.openweather.content.util
 
 import java.text.SimpleDateFormat
 import java.util.*

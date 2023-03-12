@@ -10,9 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.mathew.openweather.R
 import com.mathew.openweather.databinding.LayoutCurrentWeatherMainBinding
 import com.mathew.openweather.util.Constants.CITY_NAME
-import com.mathew.openweather.util.unixTimestampToTimeString
 import com.mathew.openweather.viewmodel.CityWeatherInfoViewModel
-import com.openweather.content.model.currentweather.CurrentWeather
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -46,31 +44,16 @@ class CityWeatherInfoFragment : Fragment() {
         } ?: run {
             findNavController().popBackStack()
         }
+        // TODO: Need to avoid using livedata here and bind directly from ViewModel.
         cityWeatherInfoViewModel.getCurrentWeatherLiveData()
             .observe(viewLifecycleOwner) { currentWeather ->
                 currentWeather?.let {
-                    setUpUI(it)
+                    cityWeatherInfoViewModel.currentWeather.set(it)
                 } ?: run {
                     binding.tvWeatherCondition.text = getString(R.string.place_not_found_error)
                 }
                 cityWeatherInfoViewModel.hideLoader()
             }
-    }
-
-    // TODO: Need to bind this using data binding.
-    private fun setUpUI(data: CurrentWeather?) {
-        binding.tvTemp.text = data?.main?.temp.toString()
-        binding.tvCityName.text = data?.name
-        binding.tvWeatherCondition.text = data?.weather?.get(0)?.main
-        binding.include2.tvSunriseTime.text = data?.sys?.sunrise?.unixTimestampToTimeString()
-        binding.include2.tvSunsetTime.text = data?.sys?.sunset?.unixTimestampToTimeString()
-        binding.include2.tvRealFeelText.text =
-            "${data?.main?.feelsLike}${getString(R.string.degree_fahrenheit_symbol)}"
-        binding.include2.tvCloudinessText.text = "${data?.clouds?.all}%"
-        binding.include2.tvWindSpeedText.text = "${data?.wind?.speed}m/s"
-        binding.include2.tvHumidityText.text = "${data?.main?.humidity}%"
-        binding.include2.tvPressureText.text = "${data?.main?.pressure}hPa"
-        binding.include2.tvVisibilityText.text = "${data?.visibility}M"
     }
 
     override fun onDestroyView() {
