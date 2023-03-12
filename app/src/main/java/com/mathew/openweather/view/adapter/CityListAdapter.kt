@@ -1,4 +1,4 @@
-package com.mathew.openweather.view
+package com.mathew.openweather.view.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,12 +11,8 @@ import com.mathew.openweather.model.City
 
 class CityListAdapter : RecyclerView.Adapter<CityListAdapter.ViewHolder>() {
 
-    private var onItemClickListener: ((City?) -> Unit)? = null
+    var onItemClickListener: ((City?) -> Unit)? = null
     private var cityList = ArrayList<City>()
-
-    fun setOnItemClickListener(listener: (City?) -> Unit) {
-        onItemClickListener = listener
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(cityList: List<City>) {

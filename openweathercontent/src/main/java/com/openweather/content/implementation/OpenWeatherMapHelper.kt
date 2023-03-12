@@ -14,7 +14,8 @@ import java.net.HttpURLConnection
 import java.util.HashMap
 
 class OpenWeatherMapHelper(apiKey: String?) {
-    private val openWeatherMapService: OpenWeatherMapService = client!!.create(
+
+    private val openWeatherMapService: OpenWeatherMapService = client.create(
         OpenWeatherMapService::class.java
     )
     private val options: MutableMap<String?, String?>
@@ -32,10 +33,10 @@ class OpenWeatherMapHelper(apiKey: String?) {
         return Throwable("UnAuthorized. Please set a valid OpenWeatherMap API KEY.")
     }
 
-    private fun notFoundErrMsg(str: String): Throwable {
+    private fun notFoundErrMsg(str: String?): Throwable {
         var throwable: Throwable? = null
         try {
-            val obj = JSONObject(str)
+            val obj = JSONObject(str ?: "")
             throwable = Throwable(obj.getString("message"))
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -46,12 +47,10 @@ class OpenWeatherMapHelper(apiKey: String?) {
         return throwable
     }
 
-    //    CURRENT WEATHER METHODS
-    //    START
     //GET CURRENT WEATHER BY CITY NAME
     fun getCurrentWeatherByCityName(city: String?, callback: CurrentWeatherCallback) {
         options[QUERY] = city
-        openWeatherMapService.getCurrentWeatherByCityName(options)!!
+        openWeatherMapService.getCurrentWeatherByCityName(options)
             .enqueue(object : Callback<CurrentWeather?> {
                 override fun onResponse(
                     call: Call<CurrentWeather?>,
@@ -76,7 +75,7 @@ class OpenWeatherMapHelper(apiKey: String?) {
             callback.onFailure(noAppIdErrMessage())
         } else {
             try {
-                callback.onFailure(notFoundErrMsg(response.errorBody()!!.string()))
+                callback.onFailure(notFoundErrMsg(response.errorBody()?.string()))
             } catch (e: IOException) {
                 e.printStackTrace()
             }

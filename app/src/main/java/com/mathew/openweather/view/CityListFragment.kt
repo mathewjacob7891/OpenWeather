@@ -9,8 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mathew.openweather.R
 import com.mathew.openweather.databinding.FragmentCityListBinding
+import com.mathew.openweather.util.Constants.CITY_NAME
+import com.mathew.openweather.view.adapter.CityListAdapter
 import com.mathew.openweather.viewmodel.CityListViewModel
-import com.mathew.openweather.viewmodel.CityListViewModelFactory
 
 /**
  * A simple [Fragment] subclass for Listing City.
@@ -23,9 +24,7 @@ class CityListFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val cityListViewModel: CityListViewModel by viewModels {
-        CityListViewModelFactory(this.requireActivity().application)
-    }
+    private val cityListViewModel: CityListViewModel by viewModels()
 
     private var adapter: CityListAdapter? = null
 
@@ -62,11 +61,11 @@ class CityListFragment : Fragment() {
     private fun initRecyclerView() {
         adapter = CityListAdapter()
         binding.recyclerViewCityList.adapter = adapter
-        adapter?.setOnItemClickListener {
+        adapter?.onItemClickListener = {
             findNavController().navigate(
                 R.id.action_Navigate_To_CityWeatherInfo,
                 Bundle().apply {
-                    putString("CityName", it?.cityName)
+                    putString(CITY_NAME, it?.cityName)
                 })
         }
     }

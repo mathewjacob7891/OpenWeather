@@ -3,6 +3,7 @@ package com.mathew.openweather.repository
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mathew.openweather.BuildConfig
 import com.mathew.openweather.db.CityDao
 import com.mathew.openweather.db.CityDatabase
 import com.mathew.openweather.model.City
@@ -24,7 +25,7 @@ class CityRepository(application: Application) {
         val db: CityDatabase = CityDatabase.getDatabase(application)
         cityDao = db.cityDao()
 
-        openWeatherHelper = OpenWeatherMapHelper(OPEN_WEATHER_API_KEY).apply {
+        openWeatherHelper = OpenWeatherMapHelper(BuildConfig.API_KEY).apply {
             setUnits(Units.IMPERIAL)
             setLanguage(Languages.ENGLISH)
         }
@@ -59,8 +60,4 @@ class CityRepository(application: Application) {
     }
 
     fun getCurrentWeatherLiveData() = _currentWeatherLiveData
-
-    companion object {
-        private val OPEN_WEATHER_API_KEY = "e4696a4ad79a2d7ee0fc43cff8144a68"
-    }
 }

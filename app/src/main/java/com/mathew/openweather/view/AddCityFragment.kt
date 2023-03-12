@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mathew.openweather.databinding.FragmentAddCityBinding
 import com.mathew.openweather.viewmodel.AddCityViewModel
-import com.mathew.openweather.viewmodel.AddCityViewModelFactory
 
 /**
  * A simple [Fragment] subclass for adding City.
@@ -21,9 +20,7 @@ class AddCityFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val addCityViewModel: AddCityViewModel by viewModels {
-        AddCityViewModelFactory(this.requireActivity().application)
-    }
+    private val addCityViewModel: AddCityViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

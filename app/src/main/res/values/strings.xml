@@ -20,10 +20,10 @@
     <string name="label_pressure">Pressure</string>
     <string name="label_wind_speed">Wind speed</string>
     <string name="label_visibility">Visibility</string>
-    <string name="degree_celsius_symbol">°C</string>
+    <string name="degree_fahrenheit_symbol">°F</string>
 
-    <string name="degree_celsius_symbol_with_temp">32.9°C</string>
-    <string name="degree_celsius_symbol_with_temp2">32°C</string>
-    <string name="degree_celsius_symbol_with_temp3">Evening\n32°C</string>
     <string name="please_add_city">Please add City</string>
+    <string name="open_weather">Open Weather</string>
+    <string name="fetching_current_weather">Fetching Current Weather..</string>
+    <string name="place_not_found_error">Sorry, selected place not found..!!</string>
 </resources>
