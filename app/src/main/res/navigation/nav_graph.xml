@@ -35,8 +35,9 @@
     </fragment>
     <action
         android:id="@+id/action_Navigate_To_CityWeatherInfo"
-        app:destination="@+id/CityWeatherInfoFragment"/>
+        app:destination="@+id/CityWeatherInfoFragment" />
     <action
         android:id="@+id/action_Navigate_To_AddCityFragment"
-        app:destination="@id/AddCityFragment"/>
+        app:destination="@id/AddCityFragment"
+        app:popUpTo="@id/CityListFragment" />
 </navigation>
