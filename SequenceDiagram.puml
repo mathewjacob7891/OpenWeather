@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User -> App: Add Place
+App -> Device: Store Place
+
+User -> App: Request All Saved Places
+App -> Device: Request
+Device --> App: Read
+App --> User: List Saved Places
+
+User -> App: Select Place from list
+App -> OpenWeather_API: Fetch Current Weather Info
+OpenWeather_API --> App: Responds with data
+App --> User: Show Formatted Weather Info
+
+
+@enduml

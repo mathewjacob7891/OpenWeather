@@ -13,6 +13,9 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.util.HashMap
 
+/**
+ * Helper Class for Open Weather API. This class contains function for fetching data from Open Weather API.
+ */
 class OpenWeatherMapHelper(apiKey: String?) {
 
     private val openWeatherMapService: OpenWeatherMapService = client.create(
@@ -20,11 +23,20 @@ class OpenWeatherMapHelper(apiKey: String?) {
     )
     private val options: MutableMap<String?, String?>
 
-    //SETUP METHODS
+    /**
+     * Function to set the unit in which Current Weather info is available.
+     *
+     * @param units pass imperial / metric according to the required result.
+     */
     fun setUnits(units: String?) {
         options[UNITS] = units
     }
 
+    /**
+     * Function to set the Language in which OpenWeather API needs to respond.
+     *
+     * @param lang string variable for the chosen language.
+     */
     fun setLanguage(lang: String?) {
         options[LANGUAGE] = lang
     }
@@ -47,7 +59,12 @@ class OpenWeatherMapHelper(apiKey: String?) {
         return throwable
     }
 
-    //GET CURRENT WEATHER BY CITY NAME
+    /**
+     * Function to fetch Current Weather information using City Name.
+     *
+     * @param city name of the city/country/place to which weather information needs to be fetched.
+     * @param callback interface to handle the response of Current Weather information.
+     */
     fun getCurrentWeatherByCityName(city: String?, callback: CurrentWeatherCallback) {
         options[QUERY] = city
         openWeatherMapService.getCurrentWeatherByCityName(options)
