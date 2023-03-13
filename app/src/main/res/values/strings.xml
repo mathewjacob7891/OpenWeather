@@ -20,7 +20,8 @@
     <string name="label_pressure">Pressure</string>
     <string name="label_wind_speed">Wind speed</string>
     <string name="label_visibility">Visibility</string>
-    <string name="degree_fahrenheit_symbol">%s°F</string>
+    <string name="degree_fahrenheit_symbol">°F</string>
+    <string name="degree_fahrenheit_symbol_with_value">%s°F</string>
 
     <string name="please_add_city">Please add City</string>
     <string name="open_weather">Open Weather</string>

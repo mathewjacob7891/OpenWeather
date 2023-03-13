@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 class AddCityViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: CityRepository
-    val cityName = ObservableField<String>()
     private var _navigationLiveData = MutableLiveData(false)
+    val cityName = ObservableField<String>()
     var navigationLiveData: LiveData<Boolean> = _navigationLiveData
 
     init {

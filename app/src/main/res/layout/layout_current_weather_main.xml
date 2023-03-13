@@ -37,8 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pt_regular"
+            android:text="@string/degree_fahrenheit_symbol"
             android:textColor="@color/light_grey"
             android:textSize="18sp"
+            android:visibility="@{viewModel.showLoader || (viewModel.currentWeather.main.temp == 0) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@+id/tv_temp"
             app:layout_constraintTop_toTopOf="@+id/tv_temp" />
 

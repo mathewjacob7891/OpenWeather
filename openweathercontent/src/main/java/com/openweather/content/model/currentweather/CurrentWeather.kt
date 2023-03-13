@@ -10,49 +10,49 @@ import com.openweather.content.model.common.Sys
 import com.openweather.content.model.common.Weather
 import com.openweather.content.model.common.Wind
 
-class CurrentWeather {
+class CurrentWeather(
     @SerializedName("coord")
-    val coord: Coord? = null
+    val coord: Coord? = null,
 
     @SerializedName("weather")
-    val weather: List<Weather>? = null
+    val weather: List<Weather>? = null,
 
     @SerializedName("base")
-    val base: String? = null
+    val base: String? = null,
 
     @SerializedName("main")
-    val main: Main? = null
+    val main: Main? = null,
 
     @SerializedName("visibility")
-    val visibility: Long? = null
+    val visibility: Long? = null,
 
     @SerializedName("wind")
-    val wind: Wind? = null
+    val wind: Wind? = null,
 
     @SerializedName("clouds")
-    val clouds: Clouds? = null
+    val clouds: Clouds? = null,
 
     @SerializedName("rain")
-    val rain: Rain? = null
+    val rain: Rain? = null,
 
     @SerializedName("snow")
-    val snow: Snow? = null
+    val snow: Snow? = null,
 
     @SerializedName("dt")
-    val dt: Long? = null
+    val dt: Long? = null,
 
     @SerializedName("sys")
-    val sys: Sys? = null
+    val sys: Sys? = null,
 
     @SerializedName("timezone")
-    val timezone: Long? = null
+    val timezone: Long? = null,
 
     @SerializedName("id")
-    val id: Long? = null
+    val id: Long? = null,
 
     @SerializedName("name")
-    val name: String? = null
+    val name: String? = null,
 
     @SerializedName("cod")
     val cod: Int? = null
-}
+)

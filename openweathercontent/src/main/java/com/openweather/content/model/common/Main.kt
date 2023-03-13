@@ -2,31 +2,31 @@ package com.openweather.content.model.common
 
 import com.google.gson.annotations.SerializedName
 
-class Main {
+class Main(
     @SerializedName("temp")
-    val temp = 0.0
+    val temp: Double = 0.0,
 
     @SerializedName("feels_like")
-    val feelsLike = 0.0
+    val feelsLike: Double = 0.0,
 
     @SerializedName("temp_min")
-    val tempMin = 0.0
+    val tempMin: Double = 0.0,
 
     @SerializedName("temp_max")
-    val tempMax = 0.0
+    val tempMax: Double = 0.0,
 
     @SerializedName("pressure")
-    val pressure = 0.0
+    val pressure: Double = 0.0,
 
     @SerializedName("humidity")
-    val humidity = 0.0
+    val humidity: Double = 0.0,
 
     @SerializedName("sea_level")
-    val seaLevel: Double? = null
+    val seaLevel: Double? = null,
 
     @SerializedName("grnd_level")
-    val grndLevel: Double? = null
+    val grndLevel: Double? = null,
 
     @SerializedName("temp_kf")
     val tempKf: Double? = null
-}
+)
