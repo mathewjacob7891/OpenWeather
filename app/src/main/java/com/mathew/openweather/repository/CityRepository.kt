@@ -7,25 +7,25 @@ import com.mathew.openweather.BuildConfig
 import com.mathew.openweather.db.CityDao
 import com.mathew.openweather.db.CityDatabase
 import com.mathew.openweather.model.City
+import com.openweather.content.callback.WeatherCallback
 import com.openweather.content.constant.Languages
 import com.openweather.content.constant.Units
-import com.openweather.content.implementation.OpenWeatherMapHelper
-import com.openweather.content.implementation.callback.CurrentWeatherCallback
-import com.openweather.content.model.currentweather.CurrentWeather
+import com.openweather.content.util.WeatherUtil
+import com.openweather.content.model.Weather
 import kotlinx.coroutines.coroutineScope
 
 
 class CityRepository(application: Application) {
 
     private var cityDao: CityDao? = null
-    private var openWeatherHelper: OpenWeatherMapHelper? = null
-    private val _currentWeatherLiveData = MutableLiveData<CurrentWeather?>()
+    private var openWeatherHelper: WeatherUtil? = null
+    private val _weatherLiveData = MutableLiveData<Weather?>()
 
     init {
         val db: CityDatabase = CityDatabase.getDatabase(application)
         cityDao = db.cityDao()
 
-        openWeatherHelper = OpenWeatherMapHelper(BuildConfig.API_KEY).apply {
+        openWeatherHelper = WeatherUtil(BuildConfig.API_KEY).apply {
             setUnits(Units.IMPERIAL)
             setLanguage(Languages.ENGLISH)
         }
@@ -47,17 +47,17 @@ class CityRepository(application: Application) {
 
     fun fetchWeatherInfoFromCityName(cityName: String) {
         openWeatherHelper?.getCurrentWeatherByCityName(cityName,
-            object : CurrentWeatherCallback {
-                override fun onSuccess(currentWeather: CurrentWeather?) {
-                    _currentWeatherLiveData.postValue(currentWeather)
+            object : WeatherCallback {
+                override fun onSuccess(weather: Weather?) {
+                    _weatherLiveData.postValue(weather)
                 }
 
                 override fun onFailure(throwable: Throwable?) {
-                    _currentWeatherLiveData.postValue(null)
+                    _weatherLiveData.postValue(null)
                     Log.v("TAG", "${throwable?.message}")
                 }
             })
     }
 
-    fun getCurrentWeatherLiveData() = _currentWeatherLiveData
+    fun getCurrentWeatherLiveData() = _weatherLiveData
 }

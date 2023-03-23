@@ -5,13 +5,13 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import com.mathew.openweather.repository.CityRepository
-import com.openweather.content.model.currentweather.CurrentWeather
+import com.openweather.content.model.Weather
 
 class CityWeatherInfoViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: CityRepository
     val showLoader = ObservableBoolean(true) // 0 -> VISIBLE, 8 -> GONE
-    var currentWeather = ObservableField<CurrentWeather>()
+    var weather = ObservableField<Weather>()
 
     init {
         repository = CityRepository(application)

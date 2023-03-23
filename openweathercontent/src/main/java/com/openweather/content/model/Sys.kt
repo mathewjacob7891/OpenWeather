@@ -1,4 +1,4 @@
-package com.openweather.content.model.common
+package com.openweather.content.model
 
 import com.google.gson.annotations.SerializedName
 import com.openweather.content.util.unixTimestampToTimeString

@@ -1,8 +1,8 @@
-package com.openweather.content.model.common
+package com.openweather.content.model
 
 import com.google.gson.annotations.SerializedName
 
-class Weather {
+class WeatherDetail {
     @SerializedName("id")
     val id: Long? = null
 

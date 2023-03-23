@@ -1,9 +1,9 @@
-package com.openweather.content.network
+package com.openweather.content.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object OpenWeatherMapClient {
+object WeatherClient {
     private const val BASE_URL = "https://api.openweathermap.org"
     private lateinit var retrofit: Retrofit
 

@@ -1,21 +1,13 @@
-package com.openweather.content.model.currentweather
+package com.openweather.content.model
 
 import com.google.gson.annotations.SerializedName
-import com.openweather.content.model.common.Clouds
-import com.openweather.content.model.common.Coord
-import com.openweather.content.model.common.Main
-import com.openweather.content.model.common.Rain
-import com.openweather.content.model.common.Snow
-import com.openweather.content.model.common.Sys
-import com.openweather.content.model.common.Weather
-import com.openweather.content.model.common.Wind
 
-class CurrentWeather(
+class Weather(
     @SerializedName("coord")
     val coord: Coord? = null,
 
     @SerializedName("weather")
-    val weather: List<Weather>? = null,
+    val weather: List<WeatherDetail>? = null,
 
     @SerializedName("base")
     val base: String? = null,

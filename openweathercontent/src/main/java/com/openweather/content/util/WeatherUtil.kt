@@ -1,11 +1,11 @@
-package com.openweather.content.implementation
+package com.openweather.content.util
 
-import com.openweather.content.network.OpenWeatherMapClient.client
-import com.openweather.content.network.OpenWeatherMapService
+import com.openweather.content.callback.WeatherCallback
+import com.openweather.content.service.WeatherClient.client
+import com.openweather.content.service.WeatherService
 import org.json.JSONObject
 import org.json.JSONException
-import com.openweather.content.implementation.callback.CurrentWeatherCallback
-import com.openweather.content.model.currentweather.CurrentWeather
+import com.openweather.content.model.Weather
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,12 +16,17 @@ import java.util.HashMap
 /**
  * Helper Class for Open Weather API. This class contains function for fetching data from Open Weather API.
  */
-class OpenWeatherMapHelper(apiKey: String?) {
+class WeatherUtil(apiKey: String?) {
 
-    private val openWeatherMapService: OpenWeatherMapService = client.create(
-        OpenWeatherMapService::class.java
+    private val weatherService: WeatherService = client.create(
+        WeatherService::class.java
     )
     private val options: MutableMap<String?, String?>
+
+    init {
+        options = HashMap()
+        options[APPID] = apiKey ?: ""
+    }
 
     /**
      * Function to set the unit in which Current Weather info is available.
@@ -65,26 +70,26 @@ class OpenWeatherMapHelper(apiKey: String?) {
      * @param city name of the city/country/place to which weather information needs to be fetched.
      * @param callback interface to handle the response of Current Weather information.
      */
-    fun getCurrentWeatherByCityName(city: String?, callback: CurrentWeatherCallback) {
+    fun getCurrentWeatherByCityName(city: String?, callback: WeatherCallback) {
         options[QUERY] = city
-        openWeatherMapService.getCurrentWeatherByCityName(options)
-            .enqueue(object : Callback<CurrentWeather?> {
+        weatherService.getCurrentWeatherByCityName(options)
+            .enqueue(object : Callback<Weather?> {
                 override fun onResponse(
-                    call: Call<CurrentWeather?>,
-                    response: Response<CurrentWeather?>
+                    call: Call<Weather?>,
+                    response: Response<Weather?>
                 ) {
                     handleCurrentWeatherResponse(response, callback)
                 }
 
-                override fun onFailure(call: Call<CurrentWeather?>, throwable: Throwable) {
+                override fun onFailure(call: Call<Weather?>, throwable: Throwable) {
                     callback.onFailure(throwable)
                 }
             })
     }
 
     private fun handleCurrentWeatherResponse(
-        response: Response<CurrentWeather?>,
-        callback: CurrentWeatherCallback
+        response: Response<Weather?>,
+        callback: WeatherCallback
     ) {
         if (response.code() == HttpURLConnection.HTTP_OK) {
             callback.onSuccess(response.body())
@@ -104,10 +109,5 @@ class OpenWeatherMapHelper(apiKey: String?) {
         private const val UNITS = "units"
         private const val LANGUAGE = "lang"
         private const val QUERY = "q"
-    }
-
-    init {
-        options = HashMap()
-        options[APPID] = apiKey ?: ""
     }
 }

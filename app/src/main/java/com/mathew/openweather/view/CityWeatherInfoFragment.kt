@@ -48,7 +48,7 @@ class CityWeatherInfoFragment : Fragment() {
         cityWeatherInfoViewModel.getCurrentWeatherLiveData()
             .observe(viewLifecycleOwner) { currentWeather ->
                 currentWeather?.let {
-                    cityWeatherInfoViewModel.currentWeather.set(it)
+                    cityWeatherInfoViewModel.weather.set(it)
                 } ?: run {
                     binding.tvWeatherCondition.text = getString(R.string.place_not_found_error)
                 }

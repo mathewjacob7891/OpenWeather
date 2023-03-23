@@ -5,8 +5,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.mathew.openweather.db.CityDao
 import com.mathew.openweather.repository.CityRepository
 import com.mathew.openweather.util.RefUtil.setAndReturnPrivateProperty
-import com.openweather.content.model.common.Main
-import com.openweather.content.model.currentweather.CurrentWeather
+import com.openweather.content.model.Main
+import com.openweather.content.model.Weather
 import org.junit.*
 import org.mockito.Mockito
 
@@ -16,7 +16,7 @@ class CityWeatherInfoViewModelTest {
     private lateinit var repository: CityRepository
     private lateinit var cityDao: CityDao
     private val cityName = "Naples"
-    private val tempCurrentWeather = CurrentWeather(
+    private val tempWeather = Weather(
         main = Main(
             temp = 26.7
         ),
@@ -43,14 +43,14 @@ class CityWeatherInfoViewModelTest {
 
     @Test
     fun getCurrentWeather() {
-        Assert.assertNull(viewModel.currentWeather.get())
+        Assert.assertNull(viewModel.weather.get())
     }
 
     @Test
     fun fetchWeatherInfoFromCityName() {
         viewModel.fetchWeatherInfoFromCityName(cityName)
-        viewModel.currentWeather.set(tempCurrentWeather)
-        Assert.assertEquals(tempCurrentWeather, viewModel.currentWeather.get())
+        viewModel.weather.set(tempWeather)
+        Assert.assertEquals(tempWeather, viewModel.weather.get())
     }
 
     @Test
