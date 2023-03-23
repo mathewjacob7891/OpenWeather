@@ -7,19 +7,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mathew.openweather.repository.CityRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddCityViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class AddCityViewModel @Inject constructor(
+    private val repository: CityRepository,
+    application: Application
+) : AndroidViewModel(application) {
 
-    private var repository: CityRepository
     private var _navigationLiveData = MutableLiveData(false)
     val cityName = ObservableField<String>()
     var navigationLiveData: LiveData<Boolean> = _navigationLiveData
-
-    init {
-        repository = CityRepository(application)
-    }
 
     fun saveCity() {
         cityName.get()?.let {

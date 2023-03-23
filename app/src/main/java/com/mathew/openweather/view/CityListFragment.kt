@@ -12,10 +12,12 @@ import com.mathew.openweather.databinding.FragmentCityListBinding
 import com.mathew.openweather.util.Constants.CITY_NAME
 import com.mathew.openweather.view.adapter.CityListAdapter
 import com.mathew.openweather.viewmodel.CityListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass for Listing City.
  */
+@AndroidEntryPoint
 class CityListFragment : Fragment() {
 
     private var _binding: FragmentCityListBinding? = null

@@ -7,6 +7,7 @@ import com.mathew.openweather.repository.CityRepository
 import com.mathew.openweather.util.RefUtil.setAndReturnPrivateProperty
 import com.openweather.content.model.Main
 import com.openweather.content.model.Weather
+import com.openweather.content.util.WeatherUtil
 import org.junit.*
 import org.mockito.Mockito
 
@@ -29,10 +30,11 @@ class CityWeatherInfoViewModelTest {
     @Before
     fun setUp() {
         val application = Mockito.mock(Application::class.java)
+        val weatherUtil: WeatherUtil = Mockito.mock(WeatherUtil::class.java)
         cityDao = Mockito.mock(CityDao::class.java)
-        repository = CityRepository(application)
+        repository = CityRepository(weatherUtil, cityDao)
         repository.setAndReturnPrivateProperty("cityDao", cityDao)
-        viewModel = CityWeatherInfoViewModel(application)
+        viewModel = CityWeatherInfoViewModel(repository, application)
         viewModel.setAndReturnPrivateProperty("repository", repository)
     }
 

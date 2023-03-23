@@ -6,16 +6,17 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import com.mathew.openweather.repository.CityRepository
 import com.openweather.content.model.Weather
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CityWeatherInfoViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class CityWeatherInfoViewModel @Inject constructor(
+    private val repository: CityRepository,
+    application: Application
+) : AndroidViewModel(application) {
 
-    private var repository: CityRepository
     val showLoader = ObservableBoolean(true) // 0 -> VISIBLE, 8 -> GONE
     var weather = ObservableField<Weather>()
-
-    init {
-        repository = CityRepository(application)
-    }
 
     fun fetchWeatherInfoFromCityName(cityName: String) {
         showLoader.set(true)

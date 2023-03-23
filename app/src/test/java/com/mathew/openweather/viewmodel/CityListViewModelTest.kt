@@ -7,6 +7,7 @@ import com.mathew.openweather.model.City
 import com.mathew.openweather.repository.CityRepository
 import com.mathew.openweather.util.RefUtil.setAndReturnPrivateProperty
 import com.mathew.openweather.util.getOrAwaitValue
+import com.openweather.content.util.WeatherUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.*
@@ -30,10 +31,11 @@ class CityListViewModelTest {
     @Before
     fun setUp() {
         val application = Mockito.mock(Application::class.java)
+        val weatherUtil: WeatherUtil = Mockito.mock(WeatherUtil::class.java)
         cityDao = Mockito.mock(CityDao::class.java)
-        repository = CityRepository(application)
+        repository = CityRepository(weatherUtil, cityDao)
         repository.setAndReturnPrivateProperty("cityDao", cityDao)
-        viewModel = CityListViewModel(application)
+        viewModel = CityListViewModel(repository, application)
         viewModel.setAndReturnPrivateProperty("repository", repository)
     }
 

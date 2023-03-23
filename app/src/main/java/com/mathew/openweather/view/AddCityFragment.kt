@@ -9,10 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mathew.openweather.databinding.FragmentAddCityBinding
 import com.mathew.openweather.viewmodel.AddCityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass for adding City.
  */
+@AndroidEntryPoint
 class AddCityFragment : Fragment() {
 
     private var _binding: FragmentAddCityBinding? = null

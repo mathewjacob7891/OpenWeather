@@ -11,10 +11,12 @@ import com.mathew.openweather.R
 import com.mathew.openweather.databinding.LayoutCurrentWeatherMainBinding
 import com.mathew.openweather.util.Constants.CITY_NAME
 import com.mathew.openweather.viewmodel.CityWeatherInfoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
+@AndroidEntryPoint
 class CityWeatherInfoFragment : Fragment() {
 
     private var _binding: LayoutCurrentWeatherMainBinding? = null

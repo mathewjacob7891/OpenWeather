@@ -7,6 +7,7 @@ import com.mathew.openweather.repository.CityRepository
 import com.mathew.openweather.util.RefUtil.setAndReturnPrivateProperty
 import com.mathew.openweather.util.getOrAwaitValue
 import com.mathew.openweather.util.observeForTesting
+import com.openweather.content.util.WeatherUtil
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import org.junit.*
@@ -25,6 +26,7 @@ open class AddCityViewModelTest {
     private lateinit var viewModel: AddCityViewModel
     private lateinit var repository: CityRepository
     private lateinit var cityDao: CityDao
+    private lateinit var weatherUtil: WeatherUtil
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -32,10 +34,11 @@ open class AddCityViewModelTest {
     @Before
     fun setUp() {
         val application = Mockito.mock(Application::class.java)
+        weatherUtil = Mockito.mock(WeatherUtil::class.java)
         cityDao = Mockito.mock(CityDao::class.java)
-        repository = CityRepository(application)
+        repository = CityRepository(weatherUtil, cityDao)
         repository.setAndReturnPrivateProperty("cityDao", cityDao)
-        viewModel = AddCityViewModel(application)
+        viewModel = AddCityViewModel(repository, application)
         viewModel.setAndReturnPrivateProperty("repository", repository)
     }
 
